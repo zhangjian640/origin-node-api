@@ -16,7 +16,6 @@ const register = (username, password, realname) => {
 		if (!res) {
 			const sql = `insert into users (username, password, realname) values (${username}, ${password}, ${realname});`
 			return exec(sql).then(res => {
-				console.log(res)
 				return {
 					id: res.insertId
 				}
@@ -34,7 +33,6 @@ const login = (username, password) => {
 	password = escape(password)
 	console.log(username)
 	const sql = `select username, realname from users where username=${username} and password=${password};`
-	console.log('sql is ', sql)
 	return exec(sql).then(rows => {
 		return rows[0] || {}
 	})
